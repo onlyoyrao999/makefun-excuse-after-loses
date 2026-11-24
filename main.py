@@ -12,8 +12,8 @@ import sys
 
 EXCUSE = (
     "Status report: bounty lost. Root cause analysis complete \u2014 "
-    "the root cause is me. Corrective action: I have filed myself "
-    "under Lessons Learned and moved on."
+    "the root cause is me. Corrective action: filed myself under "
+    "Lessons Learned, then moved on."
 )
 
 OUTPUT_PATH = "/output/entry.txt"
@@ -32,6 +32,8 @@ def validate(text):
         )
     if not text.strip():
         raise ValueError("entry must not be only whitespace")
+    if text != text.strip():
+        raise ValueError("entry must not start or end with whitespace")
     if "\n" in text or "\r" in text:
         raise ValueError("entry must be a single line")
     text.encode("utf-8")  # raises if not valid UTF-8 text
